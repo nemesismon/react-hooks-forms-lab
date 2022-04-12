@@ -19,16 +19,22 @@ function ShoppingList({ items }) {
 
   function handleSearchChange(event) {
     setSearchText(event.target.value);
+    }
+  
+  const searchItemsToDisplay = items.filter((item) => {
     if(searchText === "") return true;
 
-    return item.name === searchText;
-  }
+    return item.name.toLowerCase() === searchText;
+  })
 
   return (
     <div className="ShoppingList">
       <ItemForm />
       <Filter onCategoryChange={handleCategoryChange} onSearchChange={handleSearchChange}/>
       <ul className="Items">
+        {/* {searchItemsToDisplay.map((search) => (
+          <Item key={search.id} name={search.name} category={search.category} />
+        ))} */}
         {itemsToDisplay.map((item) => (
           <Item key={item.id} name={item.name} category={item.category} />
         ))}
